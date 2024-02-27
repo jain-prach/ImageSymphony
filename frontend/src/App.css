@@ -1,0 +1,25 @@
+/* App.css */
+.App {
+    text-align: center;
+}
+
+/* Header.css */
+.Header {
+    background-color: #333;
+    color: white;
+}
+
+.Header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.Header nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.Header nav ul li a {
+    color: white;
+    text-decoration: none;
+}

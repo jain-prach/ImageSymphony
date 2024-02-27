@@ -1,0 +1,28 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Ignore Python virtual environment
+image_symphony_venv/
+
+# Ignore Node.js modules
+frontend/node_modules/
+
+# Ignore built files for React app
+frontend/build/
+
+# Ignore cache and compiled files
+*.pyc
+__pycache__/
+
+# Ignore any user-specific files or directories
+.DS_Store
+.idea/
+
+# Ignore data and documentation directories
+data/
+docs/
+
+# Ignore environment-specific files
+.env
+
+# Ignore sensitive information
+config.json

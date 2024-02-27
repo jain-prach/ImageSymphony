@@ -1,0 +1,60 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.radial-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle closest-side, rgba(228, 220, 201, 0.1), transparent);
+}
+
+.top-right-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.bottom-left-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.app_name{
+    align-self: flex-start;
+    margin-left: 30rem;
+    font-size: 5rem;
+    font-weight: 600;
+    color: #e4dcc9;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-family: 'Crimson Pro', serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tagline{
+    align-self: flex-start;
+    margin-left: 30rem;
+    font-size: 0.85rem;
+    font-weight: 10;
+    color: #fff;
+    text-align: left;
+    letter-spacing: 0.1rem;
+    font-family: "Arapey", serif;
+    transition: all 0.3s ease;
+}
+
+.explore_btn{
+    align-self: flex-start;
+    margin-left: 30rem;
+    font-size: 1.2 rem;
+    font-weight: 600;
+    background-color: #E4DCC9;
+    cursor: pointer;
+    font-family: "Arapey", serif;
+    transition: all 0.3s ease;
+}
