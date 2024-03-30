@@ -1,0 +1,66 @@
+.about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.about-content {
+    max-width: 1000px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-family: 'Crimson Pro', serif;
+    color: #e4dcc9;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    font-weight: 10;
+    color: #fff;
+    text-align: justify;
+    letter-spacing: 0.1rem;
+    font-family: "Arapey", serif;
+}
+
+.feature-container {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-gap: 1rem;
+}
+
+.feature-card {
+padding: 1.5rem;
+border: 1px solid #e4dcc9;
+border-radius: 0.5rem;
+}
+
+.feature-icon {
+width: 3rem;
+height: 3rem;
+}
+
+.feature-title {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    font-family: 'Crimson Pro', serif;
+    color: #e4dcc9;
+    text-decoration: none;
+    text-align: left;
+}
+
+.feature-description {
+margin-top: 0.5rem;
+font-size: 0.875rem;
+}

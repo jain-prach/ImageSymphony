@@ -1,63 +1,64 @@
-import React from 'react'
+import React from 'react';
+import './About.css';
 
+const features = [
+{
+id: 1,
+icon: 'https://example.com/icon1.png',
+title: 'Model Noise of a Particular Type',
+description: 'Select the specific type of noise to model',
+},
+{
+id: 2,
+icon: 'https://example.com/icon2.png',
+title: 'Model Noise from an Image',
+description: 'Analyze the characteristics of noise present in the image passed to the system',
+},
+{
+id: 3,
+icon: 'https://example.com/icon3.png',
+title: 'Generate Modeled Noise on an Image',
+description: 'Model Generated noise to desired images',
+},
+{
+id: 4,
+icon: 'https://example.com/icon4.png',
+title: 'Generate Noise on an Image',
+description: 'Choose the type of noise to generate on an image',
+},
+];
 
-function InfoCard({ src, title, description }) {
-    return (
-        <div className="flex flex-col w-6/12 max-md:w-full">
-        <div className="flex flex-col grow self-stretch p-5 w-full rounded border border-solid border-slate-400 max-md:mt-8 max-md:max-w-full">
-            <img loading="lazy" src={src} alt={title} className="w-12 aspect-square" />
-            <h2 className="mt-3 text-3xl italic leading-9 text-white max-md:max-w-full">{title}</h2>
-            <p className="mt-3 text-sm tracking-wide leading-5 text-white text-opacity-60 max-md:max-w-full">{description}</p>
-        </div>
-        </div>
-    );
+function FeatureCard({ icon, title, description }) {
+return (
+<div className="feature-card">
+    <img src={icon} alt={title} className="feature-icon" />
+    <h3 className="feature-title">{title}</h3>
+    <p className="feature-description">{description}</p>
+</div>
+);
 }
 
-const About = () => {
-    const cards = [
-        { 
-        src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5103d0e95bace13f4ed03c626a900cc3e8c999c211cf29fdc307fcb98655c86c?apiKey=5c5bbdb311544c309a8d7b12ecde2b20&", 
-        title: "Model Noise of a Particular Type", 
-        description: "Egestas tellus nunc proin amet tellus tincidunt lacus consequat. Ultrices"
-        },
-        { 
-        src: "https://cdn.builder.io/api/v1/image/assets/TEMP/63cf0654253b7b58bc288abc9c856d1754ec462382a47f2535be7751439d6ef3?apiKey=5c5bbdb311544c309a8d7b12ecde2b20&", 
-        title: "Model Noise from an Image", 
-        description: "Integer ante non nunc, eget est justo vel semper nunc. Lacus"
-        },
-        { 
-        src: "https://cdn.builder.io/api/v1/image/assets/TEMP/3bbb9b7fa72cec0e022a6be307f837e462809752c5018b60efdce7263608738f?apiKey=5c5bbdb311544c309a8d7b12ecde2b20&", 
-        title: "Generate Modeled Noise on an Image", 
-        description: "Egestas tellus nunc proin amet tellus tincidunt lacus consequat. Ultrices"
-        },
-        { 
-        src: "https://cdn.builder.io/api/v1/image/assets/TEMP/737ab797b338c27a81367f945d924d68bd06a3194b62ce5ee943221a5c28f1bf?apiKey=5c5bbdb311544c309a8d7b12ecde2b20&", 
-        title: "Generate Noise on an Image", 
-        description: "Integer ante non nunc, eget est justo vel semper nunc. Lacus"
-        }
-    ];
-    
-    return (
-        <section className="flex flex-col justify-center px-16 py-12 w-full bg-stone-950 max-md:px-5 max-md:max-w-full">
-        <div className="flex justify-center items-center px-16 mx-2.5 mt-8 mb-24 max-md:px-5 max-md:mb-10 max-md:max-w-full">
-            <div className="flex flex-col w-full max-w-[1078px] max-md:max-w-full">
-            <h2 className="self-center text-4xl italic text-center text-white leading-[56px] max-md:max-w-full">
-                We Offer
-            </h2>
-            <p className="self-center mt-6 text-base tracking-wide leading-6 text-center text-neutral-200 text-opacity-60 w-[634px] max-md:max-w-full">
-                Risus commodo id odio turpis pharetra elementum. Pulvinar porta porta feugiat scelerisque in elit. Morbi rhoncus, tellus, eros consequat magna semper orci a tincidunt.
-            </p>
-            <div className="mt-10 max-md:max-w-full">
-                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                {cards.map((card, index) => (
-                    <InfoCard key={index} src={card.src} title={card.title} description={card.description} />
-                ))}
-                </div>
-            </div>
-            </div>
-        </div>
-        </section>
-    );
+function About() {
+return (
+<section className="about-section" id="about">
+    <div className="about-content">
+    <h2>We Offer</h2>
+    <p>
+        ImageSymphony is the “method aggregation” or “technique fusion” of different ML models and python programs that can help generate noise on an image, from an image, or of some particular type that you can integrate with your desired inputs. Noise disturbs the harmony of the image, and thus the name ImageSymphony is a metaphor; however, it also suggests the ultimate goal behind developing this product.
+    </p>
+    <div className="feature-container">
+        {features.map((feature) => (
+        <FeatureCard
+            key={feature.id}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+        />
+        ))}
+    </div>
+    </div>
+</section>
+);
 }
 
-export default About
+export default About;

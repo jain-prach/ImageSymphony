@@ -1,11 +1,51 @@
-/* App.css */
+h3 {
+    font-size: 27px;
+    font-family: 'Crimson Pro', serif;	
+    color: #e4dcc9;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-family: 'Crimson Pro', serif;
+    color: #e4dcc9;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-family: 'Crimson Pro', serif;
+    color: #e4dcc9;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 10;
+    color: #fff;
+    text-align: justify;
+    letter-spacing: 0.1rem;
+    font-family: "Arapey", serif;
+}
+
+a {
+    text-decoration: none;
+    font-family: 'Crimson Pro', serif;
+}
+
 .App {
     text-align: center;
 }
 
-/* Header.css */
 .Header {
-    background-color: #333;
+    background-color: #110F0F;
     color: white;
 }
 
@@ -23,3 +63,15 @@
     color: white;
     text-decoration: none;
 }
+
+
+.about-section {
+    background-color: #110F0F;
+    color: white;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+

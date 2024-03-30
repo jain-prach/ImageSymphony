@@ -9,6 +9,8 @@ body {
     sans-serif, "Crimson Pro", "Arapey", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #110F0F;
+  color: #e4dcc9;
 }
 
 code {
