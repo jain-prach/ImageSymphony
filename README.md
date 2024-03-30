@@ -2,37 +2,70 @@
 ## Folder Structure
 
 project_root/
-|   backend/                          # Backend directory
-|   |   modules/                      # Modules directory
-|   |   |   module0/                  # Module 0 directory
-|   |   |   |   backend.py            # Backend logic for Module 0
-|   |   |   |   design.py             # Design phase logic for Module 0
-|   |   |   |   frontend.py           # Frontend logic for Module 0
-|   |   |   |   integration.py        # Integration logic for Module 0
-|   |   |   module1/                  # Module 1 directory
-|   |   |   |   backend.py            # Backend logic for Module 1
-|   |   |   |   design.py             # Design phase logic for Module 1
-|   |   |   |   frontend.py           # Frontend logic for Module 1
-|   |   |   |   integration.py        # Integration logic for Module 1
-|   |   |   ...                       # Repeat for other modules - total = 6 -> till module 5
-|   |   server.py                     # Backend server main file
-|   data/                             # Data directory
-|   docs/                             # Documentation directory
-|   frontend/                         # Frontend directory
-|   |   node_modules/                 # Node.js modules directory (created automatically)
-|   |   public/                       # Public directory (contains index.html)
-|   |   src/                          # Source directory
-|   |   |   components/               # Components directory
-|   |   |   |   About/                # About component directory
-|   |   |   |   |   About.jsx         # About component JSX file
-|   |   |   |   |   About.css         # About component CSS file
-|   |   |   |   Header/               # Header component directory
-|   |   |   |   |   Header.jsx        # Header component JSX file
-|   |   |   |   |   Header.css        # Header component CSS file
-|   |   |   |   Footer/               # Footer component directory
-|   |   |   |   |   Footer.jsx        # Footer component JSX file
-|   |   |   |   |   Footer.css        # Footer component CSS file
-|   image_symphony_venv/              # Virtual environment directory
+
+├── backend/                         # Backend directory
+
+│   ├── modules/                     # Modules directory
+
+│   │   ├── module0/                 # Module 0 directory
+
+│   │   │   ├── backend.py           # Backend logic for Module 0
+
+│   │   │   ├── design.py            # Design phase logic for Module 0
+
+│   │   │   ├── frontend.py          # Frontend logic for Module 0
+
+│   │   │   └── integration.py       # Integration logic for Module 0
+
+│   │   ├── module1/                 # Module 1 directory
+
+│   │   │   ├── backend.py           # Backend logic for Module 1
+
+│   │   │   ├── design.py            # Design phase logic for Module 1
+
+│   │   │   ├── frontend.py          # Frontend logic for Module 1
+
+│   │   │   └── integration.py       # Integration logic for Module 1
+
+│   │   └── ...                      # Repeat for other modules - total = 6 -> till module 5
+
+│   └── server.py                    # Backend server main file
+
+├── data/                            # Data directory
+
+├── docs/                            # Documentation directory
+
+├── frontend/                        # Frontend directory
+
+│   ├── node_modules/                # Node.js modules directory (created automatically)
+
+│   ├── public/                      # Public directory (contains index.html)
+
+│   └── src/                         # Source directory
+
+│       ├── components/              # Components directory
+
+│       │   ├── About/               # About component directory
+
+│       │   │   ├── About.jsx        # About component JSX file
+
+│       │   │   └── About.css        # About component CSS file
+
+│       │   ├── Header/              # Header component directory
+
+│       │   │   ├── Header.jsx       # Header component JSX file
+
+│       │   │   └── Header.css       # Header component CSS file
+
+│       │   └── Footer/              # Footer component directory
+
+│       │       ├── Footer.jsx       # Footer component JSX file
+
+│       │       └── Footer.css       # Footer component CSS file
+
+└── image_symphony_venv/             # Virtual environment directory
+
+
 
 ## Module 0: Image Input Processing
 
