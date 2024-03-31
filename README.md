@@ -28,7 +28,7 @@ project_root/
 
 │   │   └── ...                       # Repeat for other modules - total = 6 -> till module 5
 
-│   └── server.py                     # Backend server main file
+│   └── main.py                     # Backend server main file
 
 ├── data/                             # Data directory
 

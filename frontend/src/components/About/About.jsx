@@ -7,34 +7,40 @@ id: 1,
 icon: 'https://example.com/icon1.png',
 title: 'Model Noise of a Particular Type',
 description: 'Select the specific type of noise to model',
+url: 'model-noise-particular-type',
 },
 {
 id: 2,
 icon: 'https://example.com/icon2.png',
 title: 'Model Noise from an Image',
 description: 'Analyze the characteristics of noise present in the image passed to the system',
+url: 'model-noise-from-image',
 },
 {
 id: 3,
 icon: 'https://example.com/icon3.png',
 title: 'Generate Modeled Noise on an Image',
 description: 'Model Generated noise to desired images',
+url: 'generate-modeled-noise-on-image',
 },
 {
 id: 4,
 icon: 'https://example.com/icon4.png',
 title: 'Generate Noise on an Image',
 description: 'Choose the type of noise to generate on an image',
+url: 'generate-noise-on-image',
 },
 ];
 
-function FeatureCard({ icon, title, description }) {
+function FeatureCard({ icon, title, description, url }) {
 return (
-<div className="feature-card">
-    <img src={icon} alt={title} className="feature-icon" />
-    <h3 className="feature-title">{title}</h3>
-    <p className="feature-description">{description}</p>
-</div>
+    <div className='feature-card'>
+        <a href={`${url}`}>
+            <img src={icon} alt={title} className="feature-icon" />
+            <h3 className="feature-title">{title}</h3>
+            <p className="feature-description">{description}</p>
+        </a>
+    </div>
 );
 }
 
@@ -53,6 +59,7 @@ return (
             icon={feature.icon}
             title={feature.title}
             description={feature.description}
+            url={feature.url}
         />
         ))}
     </div>

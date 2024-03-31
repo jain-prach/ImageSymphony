@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import ContactUs from './pages/ContactUs';
+import Module0 from './components/Module0/Module0';
 
 const showHeader = () => {
   if (window.location.pathname === '/'){
@@ -42,6 +43,11 @@ const showContactUs = () => {
   }
 } 
 
+const showModule0 = () => {
+  if (window.location.pathname === '/model-noise-particular-type' || window.location.pathname === '/model-noise-from-image' || window.location.pathname === '/generate-modeled-noise-on-image' || window.location.pathname === '/generate-noise-on-image'){
+    return <Module0 />;
+  }
+}
 function App() {
   return (
     <div className='ui container'>
@@ -51,6 +57,7 @@ function App() {
       { showPrivacyPolicy() }
       { showTermsOfService() }
       { showContactUs() }
+      { showModule0() }
     </div>
   );
 }
