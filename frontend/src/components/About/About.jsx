@@ -4,28 +4,28 @@ import './About.css';
 const features = [
 {
 id: 1,
-icon: 'https://example.com/icon1.png',
+icon: process.env.PUBLIC_URL + '/assets/Frame.png',
 title: 'Model Noise of a Particular Type',
 description: 'Select the specific type of noise to model',
 url: 'model-noise-particular-type',
 },
 {
 id: 2,
-icon: 'https://example.com/icon2.png',
+icon: process.env.PUBLIC_URL + '/assets/Frame.png',
 title: 'Model Noise from an Image',
 description: 'Analyze the characteristics of noise present in the image passed to the system',
 url: 'model-noise-from-image',
 },
 {
 id: 3,
-icon: 'https://example.com/icon3.png',
+icon: process.env.PUBLIC_URL + '/assets/Frame.png',
 title: 'Generate Modeled Noise on an Image',
 description: 'Model Generated noise to desired images',
 url: 'generate-modeled-noise-on-image',
 },
 {
 id: 4,
-icon: 'https://example.com/icon4.png',
+icon: process.env.PUBLIC_URL + '/assets/Frame.png',
 title: 'Generate Noise on an Image',
 description: 'Choose the type of noise to generate on an image',
 url: 'generate-noise-on-image',

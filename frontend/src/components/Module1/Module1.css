@@ -1,0 +1,36 @@
+.module1-container {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.noise-types-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem;
+    padding: 2rem;
+    border: 1px solid #e4dcc9;
+    border-radius: 0.5rem;
+}
+
+.noise-type {
+    padding: 2rem;
+    margin: 1rem;
+    border: 1px solid #e4dcc9;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.navigation-container {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+
+.navigate-button {
+    margin: 1rem;
+}
+

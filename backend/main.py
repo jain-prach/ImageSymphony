@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from modules.module0.frontend import router as frontend0
+from backend.modules.module0.frontend import router as frontend0
 
-origins = ["*"] # This will eventually be changed to only the origins you will use once it's deployed, to secure the app a bit more.
+origins = ["*"] # [*] (before) - This will eventually be changed to only the origins you will use once it's deployed, to secure the app a bit more.
 
 app = FastAPI()
 

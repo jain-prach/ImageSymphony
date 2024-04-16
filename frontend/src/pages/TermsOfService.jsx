@@ -15,7 +15,7 @@ const TermsOfService = () => {
     return (
         <div>
             <div id="header" className="flex flex-row justify-between m-4">
-                <h1>TERMS OF SERVICE</h1>
+                <h1 style={{ color: '#e4dcc9' }}>TERMS OF SERVICE</h1>
                 <a href="/" className="pt-6">Back to Home</a>
             </div>
             <div id="TermsOfService" className="m-4">

@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
     return (
         <div>
             <div id="header" className="flex flex-row justify-between m-4">
-                <h1>PRIVACY POLICY</h1>
+                <h1 style={{ color: '#e4dcc9' }}>PRIVACY POLICY</h1>
                 <a href="/" className="pt-6">Back to Home</a>
             </div>
             <div id="PrivacyPolicy" className="m-4">

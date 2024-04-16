@@ -6,6 +6,11 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import ContactUs from './pages/ContactUs';
 import Module0 from './components/Module0/Module0';
+import Module1 from './components/Module1/Module1';
+import Module3 from './components/Module3/Module3';
+import Module4 from './components/Module4/Module4';
+import Module5 from './components/Module5/Module5';
+
 
 const showHeader = () => {
   if (window.location.pathname === '/'){
@@ -48,6 +53,32 @@ const showModule0 = () => {
     return <Module0 />;
   }
 }
+
+const showModule1 = () => {
+  if (window.location.pathname === '/model-noise-particular-type/output'){
+    return <Module1 />;
+  }
+}
+
+const showModule3 = () => {
+  if (window.location.pathname === '/generate-modeled-noise-on-image/output'){
+    return <Module3 />;
+  }
+}
+
+const showModule4 = () => {
+  if (window.location.pathname === '/model-noise-from-image/output'){
+    return <Module4 />;
+  }
+}
+
+const showModule5 = () => {
+  if (window.location.pathname === '/generate-noise-on-image/output'){
+    return <Module5 />;
+  }
+}
+
+
 function App() {
   return (
     <div className='ui container'>
@@ -58,6 +89,10 @@ function App() {
       { showTermsOfService() }
       { showContactUs() }
       { showModule0() }
+      { showModule1() }
+      { showModule3() }
+      { showModule4() }
+      { showModule5() }
     </div>
   );
 }

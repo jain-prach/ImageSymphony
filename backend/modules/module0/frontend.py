@@ -7,51 +7,49 @@
 # -	Display – connection made with module0.jsx to display information after processing in backend.py
 # -	Submit – when clicked, allow backend.py to send data to integration.py after validity ensured in design.py
 
-from fastapi import APIRouter, File, UploadFile
-# import aiohttp
+from fastapi import APIRouter, File, UploadFile, HTTPException, Form
 from .design import validate_image
-from .backend import process_image
+from .backend import process_image_into_array, process_all_zero_array, save_type
 router = APIRouter()
 
 # gets image file from Module0.jsx and sends to design.py - if validation is correct - enables submit button  -> if submit button is clicked send the file to backend.py
 
 @router.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
-    validation_result = await validate_image(file.filename)
-    return {"validation": validation_result}
+    is_valid = validate_image(file.filename)
+    return {"validation": is_valid}
     
 @router.post("/model-noise-particular-type/submit")
-async def submit_image(file: UploadFile = File(...)):
+async def submit(type: str = Form(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
     try:
         module = "module1"
-        result = await process_image(module, file)
-        return result
+        await process_all_zero_array(module, width, height, min, max)
+        await save_type(module, type)   
     except Exception as e:
         return {"error": str(e)}
 
 @router.post("/generate-modeled-noise-on-image/submit")
-async def submit_image(file: UploadFile = File(...)):
+async def submit(file: UploadFile = File(...)):
     try:
         module = "module3"
-        result = await process_image(module, file)
-        return result
+        await process_image_into_array(module, file)
     except Exception as e:
         return {"error": str(e)}
     
 @router.post("/model-noise-from-image/submit")
-async def submit_image(file: UploadFile = File(...)):
+async def submit(file: UploadFile = File(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
     try:
         module = "module4"
-        result = await process_image(module, file)
-        return result
+        await process_image_into_array(module, file)
+        await process_all_zero_array(module, width, height, min, max)
+        save_type(module, type) 
     except Exception as e:
         return {"error": str(e)}
     
 @router.post("/generate-noise-on-image/submit")
-async def submit_image(file: UploadFile = File(...)):
+async def submit(file: UploadFile = File(...)):
     try:
         module = "module5"
-        result = await process_image(module, file)
-        return result
+        await process_image_into_array(module, file)
     except Exception as e:
         return {"error": str(e)}
