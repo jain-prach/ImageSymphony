@@ -28,7 +28,7 @@ async def submit(type: str = Form(...), width: int = Form(...), height: int = Fo
     except Exception as e:
         return {"error": str(e)}
 
-@router.post("/generate-modeled-noise-on-image/submit")
+@router.post("/generate-noise-on-image/submit")
 async def submit(file: UploadFile = File(...)):
     try:
         module = "module3"
@@ -46,7 +46,7 @@ async def submit(file: UploadFile = File(...), width: int = Form(...), height: i
     except Exception as e:
         return {"error": str(e)}
     
-@router.post("/generate-noise-on-image/submit")
+@router.post("/generate-modeled-noise-on-image/submit")
 async def submit(file: UploadFile = File(...)):
     try:
         module = "module5"

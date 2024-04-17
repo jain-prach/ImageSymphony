@@ -192,7 +192,7 @@ const Module0 = () => {
     
     return (
         <>
-        <div className="homelink">
+        <div className="homeLink">
             <a href="/" className="pt-6">Back to Home</a>
         </div>
         <div className="module0">

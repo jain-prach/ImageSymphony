@@ -11,4 +11,4 @@ const Module3 = () => {
     )
 }
 
-export default Module3
+export default Module3;

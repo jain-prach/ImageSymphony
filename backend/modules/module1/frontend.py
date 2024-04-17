@@ -5,7 +5,6 @@ router = APIRouter()
 @router.post("/model-noise-particular-type/noise-type")
 async def noise_type(noise_type: str = Form(...)):
     try:
-        noise_arr = []
-        await model_noise(noise_type, noise_arr, min, max) 
+        await model_noise(noise_type) 
     except Exception as e:
         return {"error": str(e)}

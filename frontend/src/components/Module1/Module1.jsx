@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import axios from 'axios';
 import './Module1.css';
 
 // send the data to backend.py to generate noise between 0 and 1
@@ -10,9 +11,11 @@ import './Module1.css';
 // Users can navigate to Module 2 (Output Image Processing) and Module 3 (Generate Noise on an Image) after submitting the required parameters. - button for navigation
 // The "Generate Noise on an Image" button is enabled only when all required parameters for noise modeling are submitted.
 
+
 const Module1 = () => {
     const [moduleEnabled, setModuleEnabled] = useState(false);
-    const [selectedNoiseType, setSelectedNoiseType] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [inputDisplay, setInputDisplay] = useState(null);
 
     const noiseTypes = [
         { id: 1, name: 'Gaussian Noise' },
@@ -26,28 +29,57 @@ const Module1 = () => {
         { id: 9, name: 'Random Noise' },
     ];
 
-    const handleNoiseTypeSelection = (noiseType) => {
-        setSelectedNoiseType(noiseType);
+    const handleNoiseTypeSelection = async (noiseType) => {
+        setErrorMessage("");
+        setModuleEnabled(true);
+        console.log(noiseType);
+        try {
+            const formData = new FormData();
+                formData.append('noise_type', noiseType);
+                await axios.post(`http://127.0.0.1:8000/model-noise-particular-type/noise-type`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+        }
+        catch (error) {
+            console.error('Error submitting noise_type: ', error);
+        }
+        if (noiseType === 'Gaussian Noise') {
+            setInputDisplay(
+                <div className="input-display">
+                    {/* Input fields specific to Gaussian Noise */}
+                    <label>Mean:</label>
+                    <input type="number"  className="input-value mean" />
+                    <label>Standard Deviation:</label>
+                    <input type="number" className="input-value std-dev"/>
+                </div>
+            );
+        } else if (noiseType === 'Salt and Pepper Noise') {
+            setInputDisplay(
+                <div className="input-display">
+                    {/* Input fields specific to Salt and Pepper Noise */}
+                    <label>Probability of Pepper:</label>
+                    <input type="number" className="input-value prob-pepper"/>
+                    <label>Probability of Salt:</label>
+                    <input type="number" className="input-value prob-salt"/>
+                </div>
+            );
+            // Add other conditions for other noise types
+        }
     };
 
     const navigateToModule3 = () => {
-        if (selectedNoiseType) {
-            // Navigate to Module 3 (Generate Noise on an Image)
-            // You can use React Router or any other navigation method here
-            console.log(`Navigating to Module 3 for ${selectedNoiseType.name}`);
-        } else {
-            alert('Please select a noise type.');
-        }
+        window.location.href = '/generate-noise-on-image';
     };
 
     const navigateToModule2 = () => {
-        if (selectedNoiseType) {
-            // Navigate to Module 3 (Generate Noise on an Image)
-            // You can use React Router or any other navigation method here
-            console.log(`Navigating to Module 3 for ${selectedNoiseType.name}`);
+        //add for submitting the noise type specific values to backend
+        if (moduleEnabled) {
+            window.location.href = '/output-image-processing';
         } else {
-            alert('Please select a noise type.');
-        }
+            setErrorMessage("Please submit desired values for noise type.");
+        } //will do the validation of taking values later -> right now if the user doesn't input anything, random values are selected for noise generation
     };
 
     return (
@@ -55,15 +87,17 @@ const Module1 = () => {
             <h2>Select Noise Type</h2>
             <div className="noise-types-container">
                 {noiseTypes.map((noiseType) => (
-                    <div key={noiseType.id} className="noise-type" onClick={() => handleNoiseTypeSelection(noiseType)}>
+                    <div key={noiseType.id} className="noise-type" onClick={() => handleNoiseTypeSelection(`${noiseType.name}`)}>
                         {noiseType.name}
                     </div>
                 ))}
             </div>
+            {inputDisplay}
             <div className="navigation-container">
                 <button className="navigate-button" disabled={!moduleEnabled} onClick={navigateToModule3}>Generate Noise on Image</button>
                 <button className="navigate-button" onClick={navigateToModule2}>Download Noise</button>
             </div>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
     );
 };

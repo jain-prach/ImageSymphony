@@ -10,6 +10,7 @@ import Module1 from './components/Module1/Module1';
 import Module3 from './components/Module3/Module3';
 import Module4 from './components/Module4/Module4';
 import Module5 from './components/Module5/Module5';
+import Module2 from './components/Module2/Module2';
 
 
 const showHeader = () => {
@@ -49,7 +50,7 @@ const showContactUs = () => {
 } 
 
 const showModule0 = () => {
-  if (window.location.pathname === '/model-noise-particular-type' || window.location.pathname === '/model-noise-from-image' || window.location.pathname === '/generate-modeled-noise-on-image' || window.location.pathname === '/generate-noise-on-image'){
+  if (window.location.pathname === '/model-noise-particular-type' || window.location.pathname === '/generate-noise-on-image' || window.location.pathname === '/model-noise-from-image' || window.location.pathname === '/generate-modeled-noise-on-image'){
     return <Module0 />;
   }
 }
@@ -61,7 +62,7 @@ const showModule1 = () => {
 }
 
 const showModule3 = () => {
-  if (window.location.pathname === '/generate-modeled-noise-on-image/output'){
+  if (window.location.pathname === '/generate-noise-on-image/output'){
     return <Module3 />;
   }
 }
@@ -73,11 +74,16 @@ const showModule4 = () => {
 }
 
 const showModule5 = () => {
-  if (window.location.pathname === '/generate-noise-on-image/output'){
+  if (window.location.pathname === '/generate-modeled-noise-on-image/output'){
     return <Module5 />;
   }
 }
 
+const showModule2 = () => {
+  if (window.location.pathname === '/output-image-processing'){
+    return <Module2 />;
+  }
+}
 
 function App() {
   return (
@@ -93,6 +99,7 @@ function App() {
       { showModule3() }
       { showModule4() }
       { showModule5() }
+      { showModule2() }
     </div>
   );
 }

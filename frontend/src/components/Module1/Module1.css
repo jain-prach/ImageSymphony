@@ -34,3 +34,17 @@
     margin: 1rem;
 }
 
+.input-display {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem;
+    padding: 2rem;
+    border: 1px solid #e4dcc9;
+}
+
+.input-display .input-value {
+    color: #000;
+    background-color: #e4dcc9;
+    width: 100px;
+}
