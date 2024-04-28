@@ -2,7 +2,8 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import json
 import logging
-
+from ..module1.integration import noise_result_id, file_type_id
+from ..module3.integration import img_result_id
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 # establish connection with the database
@@ -25,6 +26,7 @@ async def save_img_to_valid_module(module_name, image_array, filename):
         
         result = await collection.insert_one({"file_name": filename, "image_array": image_array_json})
         if result.inserted_id:
+            img_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"Image saved to {module_name} successfully"}
@@ -34,11 +36,14 @@ async def save_img_to_valid_module(module_name, image_array, filename):
 async def save_noise_to_valid_module(module_name, noise_array, min, max):
     try:
         collection = db[module_name]
-        
         noise_array_json = json.dumps(noise_array.tolist())
-
         result = await collection.insert_one({"noise_array": noise_array_json, "min": min, "max": max})	
+        print("hello1")
+        print(result.inserted_id)
+        print("hello")
         if result.inserted_id:
+            print("called")
+            noise_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"Noise array saved to {module_name} successfully"}
@@ -50,6 +55,7 @@ async def save_file_type_to_valid_module(module_name, type):
         collection = db[module_name]
         result = await collection.insert_one({"file_type": type})	
         if result.inserted_id:
+            file_type_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"File type saved to {module_name} successfully"}

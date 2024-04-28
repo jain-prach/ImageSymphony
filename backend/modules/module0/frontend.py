@@ -24,7 +24,8 @@ async def submit(type: str = Form(...), width: int = Form(...), height: int = Fo
     try:
         module = "module1"
         await process_all_zero_array(module, width, height, min, max)
-        await save_type(module, type)   
+        await save_type(module, type)
+        return
     except Exception as e:
         return {"error": str(e)}
 
@@ -33,6 +34,7 @@ async def submit(file: UploadFile = File(...)):
     try:
         module = "module3"
         await process_image_into_array(module, file)
+        return
     except Exception as e:
         return {"error": str(e)}
     
@@ -42,7 +44,8 @@ async def submit(file: UploadFile = File(...), width: int = Form(...), height: i
         module = "module4"
         await process_image_into_array(module, file)
         await process_all_zero_array(module, width, height, min, max)
-        save_type(module, type) 
+        save_type(module, type)
+        return 
     except Exception as e:
         return {"error": str(e)}
     
@@ -51,5 +54,6 @@ async def submit(file: UploadFile = File(...)):
     try:
         module = "module5"
         await process_image_into_array(module, file)
+        return
     except Exception as e:
         return {"error": str(e)}

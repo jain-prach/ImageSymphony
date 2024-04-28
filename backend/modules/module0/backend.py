@@ -24,22 +24,22 @@ async def process_image_into_array(module_name: str, file: UploadFile = File(...
         else:
             image = Image.open(io.BytesIO(await file.read()))
             img_arr = np.array(image)
-        # return 
-        return await save_img_to_valid_module(module_name, img_arr, filename)
+        await save_img_to_valid_module(module_name, img_arr, filename)
+        return 
     except Exception as e:
         return {"error": str(e)}
     
 async def process_all_zero_array(module_name, width, height, min, max):
     try:
         noise_array = np.zeros((height, width))
-        # return
-        return await save_noise_to_valid_module(module_name, noise_array, min, max)
+        await save_noise_to_valid_module(module_name, noise_array, min, max)
+        return 
     except Exception as e:
         return {"error": str(e)}
 
 async def save_type(module_name: str, type: str):
     try:
-        # return
-        return await save_file_type_to_valid_module(module_name, type)
+        await save_file_type_to_valid_module(module_name, type)
+        return
     except Exception as e:
         return {"error": str(e)}
