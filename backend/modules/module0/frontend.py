@@ -15,45 +15,45 @@ router = APIRouter()
 # gets image file from Module0.jsx and sends to design.py - if validation is correct - enables submit button  -> if submit button is clicked send the file to backend.py
 
 @router.post("/upload")
-async def upload_image(file: UploadFile = File(...)):
+def upload_image(file: UploadFile = File(...)):
     is_valid = validate_image(file.filename)
     return {"validation": is_valid}
     
 @router.post("/model-noise-particular-type/submit")
-async def submit(type: str = Form(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
+def submit(type: str = Form(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
     try:
         module = "module1"
-        await process_all_zero_array(module, width, height, min, max)
-        await save_type(module, type)
+        process_all_zero_array(module, width, height, min, max)
+        save_type(module, type)
         return
     except Exception as e:
-        return {"error": str(e)}
+        raise e
 
 @router.post("/generate-noise-on-image/submit")
-async def submit(file: UploadFile = File(...)):
+def submit(file: UploadFile = File(...)):
     try:
         module = "module3"
-        await process_image_into_array(module, file)
+        process_image_into_array(module, file)
         return
     except Exception as e:
-        return {"error": str(e)}
+        raise e
     
 @router.post("/model-noise-from-image/submit")
-async def submit(file: UploadFile = File(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
+def submit(file: UploadFile = File(...), width: int = Form(...), height: int = Form(...), min: int = Form(...), max: int = Form(...)):
     try:
         module = "module4"
-        await process_image_into_array(module, file)
-        await process_all_zero_array(module, width, height, min, max)
+        process_image_into_array(module, file)
+        process_all_zero_array(module, width, height, min, max)
         save_type(module, type)
         return 
     except Exception as e:
-        return {"error": str(e)}
+        raise e
     
 @router.post("/generate-modeled-noise-on-image/submit")
-async def submit(file: UploadFile = File(...)):
+def submit(file: UploadFile = File(...)):
     try:
         module = "module5"
-        await process_image_into_array(module, file)
+        process_image_into_array(module, file)
         return
     except Exception as e:
-        return {"error": str(e)}
+        raise e

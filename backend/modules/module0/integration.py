@@ -4,6 +4,8 @@ import json
 import logging
 from ..module1.integration import noise_result_id, file_type_id
 from ..module3.integration import img_result_id
+# import pickle
+
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 # establish connection with the database
@@ -18,46 +20,46 @@ db = client["ImageSymphony"]
 #     print(e)
 
 # saves the data based on user requirement into specified modules
-async def save_img_to_valid_module(module_name, image_array, filename):
+def save_img_to_valid_module(module_name, image_array, filename):
     try:
         collection = db[module_name]
         
-        image_array_json = json.dumps(image_array.tolist())
+        # with open("image_array.bin", "wb") as f:
+        #     pickle.dump(image_array, f)
         
-        result = await collection.insert_one({"file_name": filename, "image_array": image_array_json})
+        image_array_json =  json.dumps(image_array.tolist())
+        result = collection.insert_one({"file_name": filename, "image_array": image_array_json})
         if result.inserted_id:
             img_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"Image saved to {module_name} successfully"}
     except Exception as e:
-        return {"error": str(e)}
+        raise e
     
-async def save_noise_to_valid_module(module_name, noise_array, min, max):
+def save_noise_to_valid_module(module_name, noise_array, min, max):
     try:
         collection = db[module_name]
+        # with open("noise_array.bin", "wb") as f:
+        #     pickle.dump(noise_array, f)
         noise_array_json = json.dumps(noise_array.tolist())
-        result = await collection.insert_one({"noise_array": noise_array_json, "min": min, "max": max})	
-        print("hello1")
-        print(result.inserted_id)
-        print("hello")
+        result = collection.insert_one({"noise_array": noise_array_json, "min": min, "max": max})	
         if result.inserted_id:
-            print("called")
             noise_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"Noise array saved to {module_name} successfully"}
     except Exception as e:
-        return {"error": str(e)}
+        raise e
 
-async def save_file_type_to_valid_module(module_name, type):
+def save_file_type_to_valid_module(module_name, type):
     try:
         collection = db[module_name]
-        result = await collection.insert_one({"file_type": type})	
+        result = collection.insert_one({"file_type": type})	
         if result.inserted_id:
             file_type_id(result.inserted_id)
             return {"message": "Data saved successfully"}
         else:
             return {"message": f"File type saved to {module_name} successfully"}
     except Exception as e:
-        return {"error": str(e)}
+        raise e

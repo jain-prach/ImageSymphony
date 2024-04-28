@@ -14,7 +14,6 @@ def noise_result_id(result_id: int):
     noise_arr = result["noise_array"]
     min = result["min"]
     max = result["max"]
-    print(noise_arr)
     noise_data(noise_arr, min, max)
 
 def file_type_id(result_id: int):
@@ -22,13 +21,11 @@ def file_type_id(result_id: int):
     file_type = result["file_type"]
     return file_type
 
-async def save_processed_noise_arr(noise_arr):
+def save_processed_noise_arr(noise_arr):
     collection = db['module3'] 
-    print(noise_arr)
     noise_array_json = json.dumps(noise_arr.tolist())
-    result = await collection.insert_one({"processed_noise_array": noise_array_json})
+    result = collection.insert_one({"processed_noise_array": noise_array_json})
     if result.inserted_id:
-        print(result.inserted_id)
         from ..module2.integration import processed_noise_arr_id
         processed_noise_arr_id(result.inserted_id)
         return {"message": "Data saved successfully"}

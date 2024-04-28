@@ -1,9 +1,5 @@
 import numpy as np
-import cv2
-
-noise_arr1 = None
-min1 = None
-max1 = None
+# import cv2
 
 def noise_data(noise_arr, min_val, max_val):
     global noise_arr1
@@ -13,9 +9,13 @@ def noise_data(noise_arr, min_val, max_val):
     min1 = min_val
     max1 = max_val
 
-async def model_noise(noise_type: str):
+def model_noise(noise_type: str):
+    global noise_arr1
+    global min1
+    global max1
     if noise_type == "Gaussian Noise":
-        print(noise_arr1)
+        print(f"noise_arr: {noise_arr1}, min_val: {min1}, max_val: {max1}")
+        noise_arr1 = np.array(noise_arr1)
         row, col = noise_arr1.shape
         mean = 0
         var = 0.1
@@ -24,6 +24,6 @@ async def model_noise(noise_type: str):
         noise_arr1 = noise_arr1 + gaussian
 
         from .integration import save_processed_noise_arr
-        await save_processed_noise_arr(noise_arr1)
+        save_processed_noise_arr(noise_arr1)
 
         return {"message": "Gaussian noise added to the image"}
