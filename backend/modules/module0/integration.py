@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import json
 import logging
+from bson.binary import Binary
 from ..module1.integration import noise_result_id, file_type_id
 from ..module3.integration import img_result_id
 # import pickle
@@ -27,8 +28,8 @@ def save_img_to_valid_module(module_name, image_array, filename):
         # with open("image_array.bin", "wb") as f:
         #     pickle.dump(image_array, f)
         
-        image_array_json =  json.dumps(image_array.tolist())
-        result = collection.insert_one({"file_name": filename, "image_array": image_array_json})
+        # image_array_json =  json.dumps(image_array.tolist())
+        result = collection.insert_one({"file_name": filename, "image_array": Binary(image_array.tobytes()), "array_shape": image_array.shape})
         if result.inserted_id:
             img_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}
@@ -42,8 +43,8 @@ def save_noise_to_valid_module(module_name, noise_array, min, max):
         collection = db[module_name]
         # with open("noise_array.bin", "wb") as f:
         #     pickle.dump(noise_array, f)
-        noise_array_json = json.dumps(noise_array.tolist())
-        result = collection.insert_one({"noise_array": noise_array_json, "min": min, "max": max})	
+        # noise_array_json = json.dumps(noise_array.tolist())
+        result = collection.insert_one({"noise_array": Binary(noise_array.tobytes()), "min": min, "max": max, "array_shape": noise_array.shape})	
         if result.inserted_id:
             noise_result_id(result.inserted_id)
             return {"message": "Data saved successfully"}

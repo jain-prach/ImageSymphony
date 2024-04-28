@@ -14,8 +14,6 @@ def model_noise(noise_type: str):
     global min1
     global max1
     if noise_type == "Gaussian Noise":
-        print(f"noise_arr: {noise_arr1}, min_val: {min1}, max_val: {max1}")
-        noise_arr1 = np.array(noise_arr1)
         row, col = noise_arr1.shape
         mean = 0
         var = 0.1

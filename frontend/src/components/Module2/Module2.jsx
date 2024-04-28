@@ -7,16 +7,24 @@ const Module2 = () => {
     useEffect(() => {
         const fetchProcessedNoise = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/output_image_processing/noise_display');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch processed noise data');
-                }
+                const response = await fetch('http://127.0.0.1:8000/output_image_processing/noise_display', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
 
-                const data = await response.json();
-                setProcessedNoise(data.processed_noise);
+                if (response.ok) {
+                    const data = await response.json();
+                    const processedNoiseImg = data.processedNoise;
+
+                    setProcessedNoise(processedNoiseImg);
+                } else {
+                    console.error('Failed to fetch processed noise:', response.statusText);
+                }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error fetching processed noise:', error);
             }
         };
 
