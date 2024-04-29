@@ -1,5 +1,6 @@
 import numpy as np
 # import cv2
+import matplotlib.pyplot as plt
 
 def noise_data(noise_arr, min_val, max_val):
     global noise_arr1
@@ -18,8 +19,10 @@ def model_noise(noise_type: str):
         mean = 0
         var = 0.1
         sigma = var ** 0.5
-        gaussian = np.random.normal(mean, sigma, (row, col, 1))
+        gaussian = np.random.normal(mean, sigma, (row, col))
         noise_arr1 = noise_arr1 + gaussian
+        # plt.imshow(noise_arr1, 'gray')
+        # plt.show()
 
         from .integration import save_processed_noise_arr
         save_processed_noise_arr(noise_arr1)

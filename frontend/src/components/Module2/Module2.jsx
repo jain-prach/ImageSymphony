@@ -3,9 +3,21 @@ import './Module2.css';
 
 const Module2 = () => {
     const [processedNoise, setProcessedNoise] = useState(null);
-
     useEffect(() => {
-        const fetchProcessedNoise = async () => {
+        // const fetchImage = async () => {
+        //     try {
+        //         const response = await fetch('http://127.0.0.1:8000/output_image_processing/noise_display');
+        //         if (response.ok) {
+        //             const data = await response.json();
+        //             setProcessedNoise(data.processedNoise);
+        //         } else {
+        //             console.error('Failed to fetch image:', response.statusText);
+        //         }
+        //     } catch (error) {
+        //         console.error('Error fetching image:', error);
+        //     }
+        // };
+        const fetchImage = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/output_image_processing/noise_display', {
                     method: 'POST',
@@ -14,21 +26,18 @@ const Module2 = () => {
                     },
                     body: JSON.stringify({})
                 });
-
                 if (response.ok) {
                     const data = await response.json();
-                    const processedNoiseImg = data.processedNoise;
-
-                    setProcessedNoise(processedNoiseImg);
+                    setProcessedNoise(data.processedNoise);
                 } else {
-                    console.error('Failed to fetch processed noise:', response.statusText);
+                    console.error('Failed to fetch image:', response.statusText);
                 }
             } catch (error) {
-                console.error('Error fetching processed noise:', error);
+                console.error('Error fetching image:', error);
             }
         };
 
-        fetchProcessedNoise();
+        fetchImage();
     }, []);
 
     const handleImageDownload = () => {
@@ -45,7 +54,6 @@ const Module2 = () => {
             <h2>Display Processed Noise Image</h2>
             {processedNoise && (
                 <div>
-                    <h3>Processed Noise Image</h3>
                     <img src={`data:image/png;base64,${processedNoise}`} alt="Processed Noise" />
                     <button onClick={handleImageDownload}>Download Image</button>
                 </div>

@@ -1,27 +1,17 @@
 import numpy as np
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
+from .design import numpy_array_to_image
 
 router = APIRouter()
 
+def processed_noise_arr(processed_noise_arr_bson, arr_shape):
+    global processed_noise_array
+    processed_noise_array = np.frombuffer(processed_noise_arr_bson, dtype=np.float64).reshape(arr_shape)
+    return {"message": "Processed noise array received successfully"}
+
 @router.post("/output_image_processing/noise_display")
-def display_processed_noise_arr(processed_noise_bson, arr_shape):
-    processed_noise_array = np.frombuffer(processed_noise_bson, dtype=np.float64)
-    processed_noise_array = processed_noise_array.reshape(arr_shape)
+def display_processed_noise_arr():
+    global processed_noise_array
+    img = numpy_array_to_image(processed_noise_array)
+    return {"processedNoise": img}
 
-    # Convert the numpy array to a base64-encoded PNG image
-    import io
-    import base64
-    from PIL import Image
-
-    # Normalize array values to range [0, 255]
-    processed_noise_array = ((processed_noise_array - processed_noise_array.min()) / (processed_noise_array.max() - processed_noise_array.min()) * 255).astype(np.uint8)
-
-    # Create PIL Image
-    image = Image.fromarray(processed_noise_array)
-
-    # Convert PIL Image to base64
-    buffered = io.BytesIO()
-    image.save(buffered, format="PNG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
-
-    return {"processedNoise": img_str}
